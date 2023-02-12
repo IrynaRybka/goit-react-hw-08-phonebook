@@ -8,7 +8,9 @@ import { Loader } from 'features/Loader/Loader';
 export const ContactsPage = () => {
   const contacts = useSelector(state => state.contacts.contacts);
   const isLoading = useSelector(state => state.contacts.isLoading);
+  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
 
+  if(isLoggedIn) {
   return (
     <>
       {contacts && (
@@ -21,5 +23,8 @@ export const ContactsPage = () => {
       {isLoading && <Loader />}
       <ContactList />
     </>
-  );
+  );}
+  else {
+    return <p>Wrong autorisation!</p>
+  }
 };
