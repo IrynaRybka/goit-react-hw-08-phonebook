@@ -17,7 +17,7 @@ export const RegisterForm = () => {
       register({
         name: form.elements.name.value,
         email: form.elements.email.value,
-        passsword: form.elements.password.value,
+        password: form.elements.password.value,
       })
     );
     form.reset();
