@@ -27,7 +27,7 @@ export const ContactsForm = () => {
       });
       return false;
     }
-    dispatch(addContactsAsyncThunk(newContact));
+    dispatch(addContactsAsyncThunk({ newName, number }));
     reset();
   };
 
@@ -47,8 +47,8 @@ export const ContactsForm = () => {
         <label htmlFor="name">
           Name
           <input
-          className={css.form_input}
-          placeholder='Type 2-20 symbols'
+            className={css.form_input}
+            placeholder="Type 2-20 symbols"
             minLength={2}
             maxLength={20}
             value={newName}
@@ -63,8 +63,8 @@ export const ContactsForm = () => {
         <label htmlFor="number">
           Number
           <input
-          placeholder='Type 6-20 numbers'
-           className={css.form_input}
+            placeholder="Type 6-20 numbers"
+            className={css.form_input}
             minLength={6}
             maxLength={20}
             value={number}
@@ -76,7 +76,9 @@ export const ContactsForm = () => {
             required
           />
         </label>
-        <button  className={css.form_button} type="submit">Add contact</button>
+        <button className={css.form_button} type="submit">
+          Add contact
+        </button>
       </form>
     </div>
   );

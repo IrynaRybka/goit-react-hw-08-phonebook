@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { register } from 'redax/auth/auth.thunk';
+import css from './RegisterForm.module.css'
+
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -10,6 +12,7 @@ export const RegisterForm = () => {
   const [password, setPassword] = useState('');
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
 
+
   const handleSubmit = e => {
     e.preventDefault();
     const form = e.currentTarget;
@@ -17,42 +20,46 @@ export const RegisterForm = () => {
       register({
         name: form.elements.name.value,
         email: form.elements.email.value,
-        passsword: form.elements.password.value,
+        password: form.elements.password.value,
       })
     );
-    form.reset();
+    setName('');
+    setEmail('');
+    setPassword('');
   };
   if (!isLoggedIn) {
     return (
-      <form onSubmit={handleSubmit} autoComplete="off">
-        <label>
-          Username
-          <input
+      <form className={css.form} onSubmit={handleSubmit} autoComplete="off">
+        <label className={css.input_box}>
+         Name:
+          <input className={css.input}
             type="text"
             name="name"
             value={name}
             onChange={e => setName(e.target.value)}
           />
         </label>
-        <label>
-          Email
+        <label className={css.input_box}>
+          Email:
           <input
+          className={css.input}
             type="email"
             name="email"
             value={email}
             onChange={e => setEmail(e.target.value)}
           />
         </label>
-        <label>
-          Password
+        <label className={css.input_box}>
+          Password:
           <input
+          className={css.input}
             type="password"
             name="password"
             value={password}
             onChange={e => setPassword(e.target.value)}
           />
         </label>
-        <button type="submit">Register</button>
+        <button className={css.button}type="submit">Register</button>
       </form>
     );
   } else {

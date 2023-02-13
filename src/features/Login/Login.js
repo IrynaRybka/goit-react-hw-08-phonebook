@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { logIn } from "redax/auth/auth.thunk";
+import css from './Login.module.css';
 
 
 export const Login = () => {
@@ -31,16 +32,16 @@ export const Login = () => {
       };
       if (!isLoggedIn) {
     return (
-        <form onSubmit={handleSubmit} autoComplete="off">
-      <label >
-        Email
-        <input type="email" name="email" value={email} onChange={setInput} />
+        <form className={css.form}  onSubmit={handleSubmit} autoComplete="off">
+      <label className={css.input_box}>
+        Email:
+        <input className={css.input} type="email" name="email" value={email} onChange={setInput} />
       </label>
-      <label >
-        Password
-        <input type="password" name="password" value={password} onChange={setInput} />
+      <label className={css.input_box}>
+        Password:
+        <input className={css.input} type="password" name="password" value={password} onChange={setInput} />
       </label>
-      <button type="submit">Log In</button>
+      <button className={css.button} type="submit">Log In</button>
     </form>
     )}
     else {

@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+}
+.button{
+    margin-left: 20px;
+    font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  border: #fff 1px solid;
+  border-radius: 6px;
+  padding: 10px 15px;
+  cursor: pointer;
+  background-color: transparent;
+}
+.button:focus,
+.button:hover {
+  background-color: rgba(5, 5, 13, 0.5);
+}

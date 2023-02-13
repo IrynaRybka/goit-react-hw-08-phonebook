@@ -25,6 +25,6 @@ export const ContactsPage = () => {
     </>
   );}
   else {
-    return <p>Wrong autorisation!</p>
+    return <h2 style={{ textAlign: 'center' }}>Bye 🙋‍♀️, see you soon!</h2>
   }
 };

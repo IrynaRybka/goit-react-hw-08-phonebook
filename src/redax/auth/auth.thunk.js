@@ -12,65 +12,65 @@ const clearAuthHeader = () => {
 };
 
 export const getUser = createAsyncThunk('auth/getUser', async (_, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const persistedToken = state.auth.token;
-    if (persistedToken === null) {
-      return thunkAPI.rejectWithValue('Unable to fetch user');}
+  const state = thunkAPI.getState();
+  const persistedToken = state.auth.token;
+  if (persistedToken === null) {
+    return thunkAPI.rejectWithValue('Unable to fetch user');
+  }
 
-      try {
-        setAuthHeader(persistedToken);
-        const response = await axios.get('/users/current');
-        return response.data;
-      } catch (err) {
-        toast.error(err.message);
-        return thunkAPI.rejectWithValue(err.message);
-      }
-    }
-  );
-  
-  export const register = createAsyncThunk(
-    'auth/register',
-    async ({ name, email, password }, thunkAPI) => {
-      try {
-        const response = await axios.post('/users/signup', {
-          name,
-          email,
-          password,
-        });
-        setAuthHeader(response.data.token);
-        toast.success('Welcome!');
-        return response.data;
-      } catch (err) {
-        toast.error(
-          `password (${password}) is shorter than the minimum allowed length (8)`
-        );
-        return thunkAPI.rejectWithValue(err.message);
-      }
-    }
-  );
-  
-  export const logIn = createAsyncThunk(
-    'auth/login',
-    async ({ email, password }, thunkAPI) => {
-      try {
-        const response = await axios.post('/users/login', { email, password });
-        setAuthHeader(response.data.token);;
-        toast.success('Welcome back!');
-        return response.data;
-      } catch (err) {
-        toast.error(err.message);
-        return thunkAPI.rejectWithValue(err.message);
-      }
-    }
-  );
-  
-  export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
+  try {
+    setAuthHeader(persistedToken);
+    const response = await axios.get('/users/current');
+    return response.data;
+  } catch (err) {
+    toast.error(err.message);
+    return thunkAPI.rejectWithValue(err.message);
+  }
+});
+
+export const register = createAsyncThunk(
+  'auth/register',
+  async ({ name, email, password }, thunkAPI) => {
     try {
-      const response = await axios.post('/users/logout');
-      clearAuthHeader();
-      toast.success('See you!');
+      const response = await axios.post('/users/signup', {
+        name,
+        email,
+        password,
+      });
+      setAuthHeader(response.data.token);
+      toast.success(`Welcome ${name}!`);
       return response.data;
     } catch (err) {
+      toast.error(
+        `This password is shorter than the 8 symbol`
+      );
       return thunkAPI.rejectWithValue(err.message);
     }
-  });
+  }
+);
+
+export const logIn = createAsyncThunk(
+  'auth/login',
+  async ({ email, password }, thunkAPI) => {
+    try {
+      const response = await axios.post('/users/login', { email, password });
+      setAuthHeader(response.data.token);
+      toast.success('Welcome back!');
+      return response.data;
+    } catch (err) {
+      toast.error(err.message);
+      return thunkAPI.rejectWithValue(err.message);
+    }
+  }
+);
+
+export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
+  try {
+    const response = await axios.post('/users/logout');
+    clearAuthHeader();
+    toast.success('See you!');
+    return response.data;
+  } catch (err) {
+    return thunkAPI.rejectWithValue(err.message);
+  }
+});

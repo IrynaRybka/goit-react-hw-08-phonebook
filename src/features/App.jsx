@@ -9,6 +9,8 @@ import { Loader } from './Loader/Loader';
 import { RegisterForm } from './RegisterForm/RegisterForm';
 import { Login } from './Login/Login';
 import { Navigation } from './Navigation/Navigation';
+import { Home } from './Home/Home';
+
 
 export const App = () => {
   const isLoadingAuth = useSelector(state => state.auth.isLoading)
@@ -23,7 +25,7 @@ export const App = () => {
       {isLoadingAuth && <Loader/>}
       <Navigation/>
       <Routes>
-        <Route path="/" element={<h1>Save your contacts here</h1>}/>
+        <Route path="/" element={<Home/>}/>
         <Route path="/register" element={<RegisterForm/>}/>
         <Route path="/login" element={<Login />} />
         <Route path="/contacts" element={<ContactsPage />} />

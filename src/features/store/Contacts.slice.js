@@ -45,7 +45,7 @@ const contactsSlise = createSlice({
     [addContactsAsyncThunk.fulfilled] : (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.contacts = [].concat(action.payload, state.contacts)
+        state.contacts.push(action.payload);
     },
     [addContactsAsyncThunk.rejected] : (state, action) => {
         state.isLoading = false;

@@ -1,16 +1,21 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { logOut } from 'redax/auth/auth.thunk';
+import css from './UserMenu.module.css';
 
 export const UserMenu = () => {
-    const userName = useSelector(state => state.auth.name);
-    const dispatch = useDispatch();
+  const userName = useSelector(state => state.auth.name);
+  const dispatch = useDispatch();
 
-    return (
-        <div>
-            <p>Welcome, {userName}</p>
-      <button type="button" onClick={() => dispatch(logOut())}>
+  return (
+    <div className={css.container}>
+      <p>Welcome 👋, {userName}!</p>
+      <button
+        className={css.button}
+        type="button"
+        onClick={() => dispatch(logOut())}
+      >
         Logout
       </button>
-        </div>
-    )
-}
+    </div>
+  );
+};
