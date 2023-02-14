@@ -9,14 +9,14 @@ import css from './ContactsForm.module.css';
 export const ContactsForm = () => {
   const contacts = useSelector(state => state.contacts.contacts);
   const dispatch = useDispatch();
-  const [newName, setNewName] = useState('');
+  const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
   const onAddContact = event => {
     event.preventDefault();
     const newContact = {
       id: nanoid(),
-      name: newName,
+      name: name,
       phone: number,
     };
     if (contacts.some(contact => contact.name === newContact.name)) {
@@ -27,12 +27,12 @@ export const ContactsForm = () => {
       });
       return false;
     }
-    dispatch(addContactsAsyncThunk({ newName, number }));
+    dispatch(addContactsAsyncThunk({ name, number }));
     reset();
   };
 
   const reset = () => {
-    setNewName('');
+    setName('');
     setNumber('');
   };
 
@@ -51,8 +51,8 @@ export const ContactsForm = () => {
             placeholder="Type 2-20 symbols"
             minLength={2}
             maxLength={20}
-            value={newName}
-            onChange={e => setNewName(e.target.value)}
+            value={name}
+            onChange={e => setName(e.target.value)}
             type="text"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
