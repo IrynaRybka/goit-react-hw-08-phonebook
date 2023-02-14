@@ -5,6 +5,7 @@
     min-width: 260px;
     max-width: 600px;
     padding: 20px;
+    background: radial-gradient(circle, rgba(255,255,255,1) 30%, rgba(20,47,177,1) 99%);
     
    
 }
