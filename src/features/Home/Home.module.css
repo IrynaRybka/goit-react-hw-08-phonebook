@@ -6,3 +6,27 @@
     padding: 30px;
     font-size: 18px;
 }
+.picture {
+    color: #0B116A;
+    animation-name: changeBgColor;
+    animation-duration: 3000ms;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+.picture:hover {
+    animation-play-state: paused;
+}
+@keyframes changeBgColor {
+    0% {
+      color: teal;
+    }
+  
+    50% {
+      color: orange;
+    }
+  
+    100% {
+      color: deepskyblue;
+    }
+  }
