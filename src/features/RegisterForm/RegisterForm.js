@@ -2,8 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { register } from 'redax/auth/auth.thunk';
-import css from './RegisterForm.module.css'
-
+import css from './RegisterForm.module.css';
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -11,7 +10,6 @@ export const RegisterForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
-
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -31,8 +29,9 @@ export const RegisterForm = () => {
     return (
       <form className={css.form} onSubmit={handleSubmit} autoComplete="off">
         <label className={css.input_box}>
-         Name:
-          <input className={css.input}
+          <span className={css.name}>Name:</span>
+          <input
+            className={css.input}
             type="text"
             name="name"
             value={name}
@@ -40,9 +39,9 @@ export const RegisterForm = () => {
           />
         </label>
         <label className={css.input_box}>
-          Email:
+          <span className={css.email}>Email:</span>
           <input
-          className={css.input}
+            className={css.input}
             type="email"
             name="email"
             value={email}
@@ -52,14 +51,16 @@ export const RegisterForm = () => {
         <label className={css.input_box}>
           Password:
           <input
-          className={css.input}
+            className={css.input}
             type="password"
             name="password"
             value={password}
             onChange={e => setPassword(e.target.value)}
           />
         </label>
-        <button className={css.button}type="submit">Register</button>
+        <button className={css.button} type="submit">
+          Register
+        </button>
       </form>
     );
   } else {

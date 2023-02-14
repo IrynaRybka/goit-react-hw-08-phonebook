@@ -34,11 +34,11 @@ export const Login = () => {
     return (
         <form className={css.form}  onSubmit={handleSubmit} autoComplete="off">
       <label className={css.input_box}>
-        Email:
+        <span className={css.email}>Email:</span>
         <input className={css.input} type="email" name="email" value={email} onChange={setInput} />
       </label>
       <label className={css.input_box}>
-        Password:
+        <span>Password:</span>
         <input className={css.input} type="password" name="password" value={password} onChange={setInput} />
       </label>
       <button className={css.button} type="submit">Log In</button>
