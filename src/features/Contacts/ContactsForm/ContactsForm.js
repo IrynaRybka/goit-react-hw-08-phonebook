@@ -28,7 +28,7 @@ export const ContactsForm = () => {
       return false;
     }
     dispatch(addContactsAsyncThunk({ name, number }));
-    // reset();
+    reset();
   };
 
   const reset = () => {
