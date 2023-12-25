@@ -42,7 +42,7 @@ export const register = createAsyncThunk(
       return response.data;
     } catch (err) {
       toast.error(
-        `This password is shorter than the 8 symbol`
+        `no valid password`
       );
       return thunkAPI.rejectWithValue(err.message);
     }

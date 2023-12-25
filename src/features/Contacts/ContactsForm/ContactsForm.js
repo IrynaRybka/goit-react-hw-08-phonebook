@@ -12,6 +12,7 @@ export const ContactsForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
+
   const onAddContact = event => {
     event.preventDefault();
     const newContact = {
@@ -55,7 +56,7 @@ export const ContactsForm = () => {
             onChange={e => setName(e.target.value)}
             type="text"
             name="name"
-            pattern="\w{3,20}"
+            // pattern="\w{3,20}"
             required
           />
         </label>

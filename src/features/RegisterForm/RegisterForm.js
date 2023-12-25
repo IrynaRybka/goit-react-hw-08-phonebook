@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { register } from 'redax/auth/auth.thunk';
 import css from './RegisterForm.module.css';
+import {DebounceInput} from 'react-debounce-input';
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -25,35 +26,42 @@ export const RegisterForm = () => {
     setEmail('');
     setPassword('');
   };
+
+  console.log(name, email, password)
+
   if (!isLoggedIn) {
+
     return (
       <form className={css.form} onSubmit={handleSubmit} autoComplete="off">
         <label className={css.input_box}>
           <span className={css.name}>Name:</span>
-          <input
+          <DebounceInput
             className={css.input}
             type="text"
             name="name"
+            debounceTimeout={600}
             value={name}
             onChange={e => setName(e.target.value)}
           />
         </label>
         <label className={css.input_box}>
           <span className={css.email}>Email:</span>
-          <input
+          <DebounceInput
             className={css.input}
             type="email"
             name="email"
+            debounceTimeout={600}
             value={email}
             onChange={e => setEmail(e.target.value)}
           />
         </label>
         <label className={css.input_box}>
           Password:
-          <input
+          <DebounceInput
             className={css.input}
             type="password"
             name="password"
+            debounceTimeout={600}
             value={password}
             onChange={e => setPassword(e.target.value)}
           />
