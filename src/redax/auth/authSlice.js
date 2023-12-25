@@ -12,9 +12,9 @@ const initialState = {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder
-      .addCase(getUser.pending, state => {
+      .addCase(getUser.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(getUser.fulfilled, (state, action) => {
