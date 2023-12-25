@@ -53,7 +53,7 @@ export const logIn = createAsyncThunk(
   'auth/login',
   async ({ email, password }, thunkAPI) => {
     try {
-      const response = await axios.post('/users/login', { email, password });
+      const response = await axios.post(`${axios.defaults.baseURL}/users/login`, { email, password });
       setAuthHeader(response.data.token);
       toast.success('Welcome back!');
       return response.data;
@@ -66,7 +66,7 @@ export const logIn = createAsyncThunk(
 
 export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
-    const response = await axios.post('/users/logout');
+    const response = await axios.post(`${axios.defaults.baseURL}/users/logout`);
     clearAuthHeader();
     toast.success('See you!');
     return response.data;
